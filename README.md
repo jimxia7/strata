@@ -148,7 +148,7 @@ If you find a cleaner way to specific the library paths, please let me know.
 
 Prior to building on OS X, install [homebrew](https://brew.sh/). Next install the dependencies:
 
-    $> brew install qt gsl qwt cmake
+    $> brew install qt gsl qwt cmake imagemagick poppler
 
 Then compile:
 
@@ -159,29 +159,22 @@ Then compile:
     $> QWT_ROOT_DIR="/opt/homebrew/Cellar/qwt/6.3.0"
     $> QWT_INCLUDE_DIR="/opt/homebrew/Cellar/qwt/6.3.0/lib/qwt.framework/Versions/6/Headers"
     $> GSL_ROOT_DIR="/opt/homebrew/Cellar/gsl/2.8"
-    $> DCMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5"
+    $> DCMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5;/opt/homebrew/opt/qwt"
+    $> DCMAKE_EXE_LINKER_FLAGS="-F/opt/homebrew/Cellar/qwt/6.3.0/lib -framework qwt"
     $> cmake .. \
         -DCMAKE_PREFIX_PATH=$DCMAKE_PREFIX_PATH \
         -DQWT_ROOT_DIR=$QWT_ROOT_DIR \
         -DQWT_INCLUDE_DIR=$QWT_INCLUDE_DIR \
         -DGSL_ROOT_DIR=$GSL_ROOT_DIR \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX:STRING=dist
+        -DCMAKE_INSTALL_PREFIX:STRING=dist \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+        -DCMAKE_EXE_LINKER_FLAGS=$DCMAKE_EXE_LINKER_FLAGS
     $> cmake --build . --target install
 
 After building, the executable can be run by issuing the following command from the `build` directory:
 
     $> ./dist/usr/bin/strata
-
-Right now (12/15/2019) on macOS Mojave homebrew installs qwt version 6.1.4 and gls version 2.6, so change the relative lines
-
-    $> QWT_ROOT_DIR="/usr/local/Cellar/qwt/6.1.4"
-    $> QWT_INCLUDE_DIR="/usr/local/Cellar/qwt/6.1.4/lib/qwt.framework/Versions/6/Headers"
-    $> GSL_ROOT_DIR="/usr/local/Cellar/gsl/2.6"
-
-or in case of error control the version in the directory: /usr/local/Cellar/
-
-If you find a cleaner way to specific the library paths, please let me know.
 
 ## Testing
 
