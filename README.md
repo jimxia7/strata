@@ -157,9 +157,9 @@ Then compile:
     $> mkdir build
     $> cd build
     $> QWT_ROOT_DIR="/opt/homebrew/Cellar/qwt/6.3.0"
-    $> QWT_INCLUDE_DIR="/opt/homebrew/Cellar/gsl/2.8"
-    $> GSL_ROOT_DIR="/usr/local/Cellar/gsl/2.5"
-    $> DCMAKE_PREFIX_PATH = "/usr/local/opt/qt@5"
+    $> QWT_INCLUDE_DIR="/opt/homebrew/Cellar/qwt/6.3.0/lib/qwt.framework/Versions/6/Headers"
+    $> GSL_ROOT_DIR="/opt/homebrew/Cellar/gsl/2.8"
+    $> DCMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5"
     $> cmake .. \
         -DCMAKE_PREFIX_PATH=$DCMAKE_PREFIX_PATH \
         -DQWT_ROOT_DIR=$QWT_ROOT_DIR \
